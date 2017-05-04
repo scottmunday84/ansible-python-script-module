@@ -30,14 +30,14 @@ class ActionModule(ActionBase):
             source = self._loader.path_dwim_relative(self._loader.get_basedir(), 'python_scripts', source)
 
         source = os.path.abspath(source)
-        inline = open(source).read();
+        inline = open(source).read()
 
         temp_vars = task_vars.copy()
         temp_vars['meta_action'] = self
-        temp_vars['facts'] = []
+        temp_vars['facts'] = dict()
 
         exec(inline, temp_vars)  # Don't worry. It's going to be awesome.
 
-        result['ansible_facts'] = temp_vars.get('facts', [])
+        result['ansible_facts'] = temp_vars.get('facts', dict())
 
         return result
