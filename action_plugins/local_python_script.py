@@ -38,6 +38,9 @@ class ActionModule(ActionBase):
 
         exec(inline, temp_vars)  # Don't worry. It's going to be awesome.
 
-        result['ansible_facts'] = temp_vars.get('facts', dict())
+        if not isinstance(temp_vars.get('facts'), dict):
+            raise AnsibleError("The facts variable must be a dict.")
+
+        result['ansible_facts'] = temp_vars['facts']
 
         return result
