@@ -1,7 +1,9 @@
 Ansible Local Python Script Module
 --
 
-I designed this module to run a Python script from within an Ansible tasklist, using the current context.
+I designed this module to run a Python script from within an Ansible tasklist. Python is a
+powerful language, and because it is the programming language used by Ansible, we can share context between Ansible and
+scripts written for this module, allowing you to quickly boilerplate code that just will work with Ansible.
 
 ```yaml
 - local_python_script: src="hello-world.py"
@@ -12,7 +14,7 @@ I designed this module to run a Python script from within an Ansible tasklist, u
 print "Hello world!"
 ```
 
-You can also create new facts easily.
+You can also create new facts in your scripts.
 
 ```yaml
 - local_python_script: src="add-a-fact.py"
@@ -24,7 +26,8 @@ You can also create new facts easily.
 facts['a_fact'] = "this is a fact!"
 ```
 
-You can also use facts available to the current context.
+We can easiy pass facts to our scripts as well. If it is defined within the Ansible context, it'll be available from
+your script!
 
 ```yaml
 - set_fact:
