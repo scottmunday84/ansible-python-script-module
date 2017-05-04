@@ -1,18 +1,22 @@
 Ansible Local Python Script Module
---
+===
 
 I designed this module to run a Python script from within an Ansible tasklist. Python is a
 powerful language, and because it is the programming language used by Ansible, we can share context between Ansible and
 scripts written for this module, allowing you to quickly boilerplate code that just will work with Ansible.
 
 Getting Started
-===
+---
 
 To get started, copy the folders for action_plugins and library into your playbook directory.
 
 Afterward, you should be all set!
 
-To get started, let's write a "hello world" script.
+
+Examples
+---
+
+Like most introductions, let's write a "hello world" script.
 
 ```yaml
 - local_python_script: src="hello-world.py"
@@ -49,3 +53,19 @@ your script!
 print a_fact
 ```
 
+Although these previous examples are simple, the entire power of Python is at your fingertips. For example, here's a
+script I wrote to connect to a MySQL server.
+
+```yaml
+- local_python_script: src="connect-to-mysql.py"
+```
+
+{{role_path}}/python_scripts/connect-to-mysql.py
+```python
+import MySQLdb
+
+db = MySQLdb.connect(host="localhost",
+                     user="user",
+                     passwd="password",
+                     db="db")
+```
