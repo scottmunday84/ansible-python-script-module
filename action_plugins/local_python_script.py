@@ -9,7 +9,7 @@ from ansible.plugins.action import ActionBase
 class ActionModule(ActionBase):
     def run(self, task_vars=None):
         '''
-        Run an Ansible action from a local script.
+        Run a local Python script from within Ansible.
 
         :param task_vars:
         :return:
